@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads latest EuDic disk image and imports into Munki.</string>
+    <key>Identifier</key>
+    <string>org.ef.autopkg.EuDic.munki</string>
+    <key>Input</key>
+    <dict>
+		<key>CATALOG</key>
+		<string>testing</string>
+        <key>NAME</key>
+        <string>EuDic</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string></string>
+		<key>USER_AGENT</key>
+		<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
+		<key>VERSION</key>
+		<string>latest</string>
+		<key>pkginfo</key>
+        <dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+            <key>description</key>
+            <string>%NAME% Application</string>
+            <key>display_name</key>
+            <string>%NAME%</string>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>unattended_install</key>
+            <true/>
+			<key>notes</key>
+			<string>-- Packaged by autopkg:
+Source: http://www.eudic.net/update/eudic_mac.xml
+</string>
+        </dict>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.3.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.hewei100.EuDic.munki</string>
+</dict>
+</plist>
