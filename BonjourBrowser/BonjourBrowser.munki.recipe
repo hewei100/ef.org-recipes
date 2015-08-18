@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>org.ef.autopkg.munki.BonjourBrowser</string>
+	<string>org.ef.autopkg.BonjourBrowser.munki</string>
 	<key>Input</key>
 	<dict>
 		<key>CATALOG</key>
@@ -37,6 +37,6 @@ Source: %DOWNLOAD_URL%
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.jleggat.autopkg-recipes.BonjourBrowser.munki</string>
+	<string>com.github.jleggat.BonjourBrowser.munki</string>
 </dict>
 </plist>
