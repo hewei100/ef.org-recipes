@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>org.ef.autopkg.munki.BetterZipQL</string>
+	<string>org.ef.autopkg.BetterZipQL.munki</string>
 	<key>Input</key>
 	<dict>
 		<key>CATALOG</key>
@@ -54,6 +54,6 @@ exit 0
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.jps3.munki.BetterZipQL</string>
+	<string>com.github.jps3.munki.BetterZip</string>
 </dict>
 </plist>
