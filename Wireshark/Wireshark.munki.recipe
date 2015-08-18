@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.Wireshark.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>APP_DESTINATION</key>
+		<string>/Applications</string>
+		<key>CATALOG</key>
+		<string>testing</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string></string>
+		<key>NAME</key>
+		<string>Wireshark</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+			<key>description</key>
+			<string>Wireshark is a powerful network protocol analysis suite.</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>notes</key>
+			<string>-- Packaged by autopkg</string>
+			<key>unattended_install</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.jleggat.Wireshark.munki</string>
+</dict>
+</plist>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.FileZilla.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>CATALOG</key>
+		<string>testing</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string></string>
+		<key>NAME</key>
+		<string>FileZilla</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+			<key>description</key>
+			<string>FileZilla is a fast and reliable cross-platform FTP, FTPS and SFTP client.</string>
+			<key>display_name</key>
+			<string>FileZilla</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>notes</key>
+			<string>-- Packaged by autopkg</string>
+			<key>unattended_install</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.keeleysam.recipes.FileZilla.munki</string>
+</dict>
+</plist>

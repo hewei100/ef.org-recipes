@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of the Suspicious Package Quicklook Generator.</string>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.SuspiciousPackage.download</string>
+	<key>Input</key>
+	<dict>
+      <key>NAME</key>
+      <string>SuspiciousPackage</string>
+      <key>APP_NAME</key>
+      <string>Suspicious Package</string>
+      <key>DOWNLOAD_URL</key>
+      <string>http://www.mothersruin.com/software/downloads/%NAME%.pkg</string>
+      </dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+      <dict>
+         <key>Processor</key>
+         <string>URLDownloader</string>
+         <key>Arguments</key>
+         <dict>
+            <key>url</key>
+            <string>%DOWNLOAD_URL%</string>
+         </dict>
+      </dict>
+      <dict>
+         <key>Processor</key>
+         <string>FlatPkgUnpacker</string>
+         <key>Arguments</key>
+         <dict>
+            <key>flat_pkg_path</key>
+            <string>%pathname%</string>
+            <key>destination_path</key>
+            <string>%RECIPE_CACHE_DIR%/unpack</string>
+            <key>purge_destination</key>
+            <true/>
+         </dict>
+      </dict>
+      <dict>
+         <key>Processor</key>
+         <string>PkgPayloadUnpacker</string>
+         <key>Arguments</key>
+         <dict>
+            <key>pkg_payload_path</key>
+            <string>%RECIPE_CACHE_DIR%/unpack/%NAME%Plugin.pkg/Payload</string>
+            <key>destination_path</key>
+            <string>%RECIPE_CACHE_DIR%/payload</string>
+            <key>purge_destination</key>
+            <false />
+         </dict>
+      </dict>
+      <dict>
+         <key>Processor</key>
+         <string>Versioner</string>
+         <key>Arguments</key>
+         <dict>
+            <key>input_plist_path</key>
+            <string>%destination_path%/Library/QuickLook/%APP_NAME%.qlgenerator/Contents/Info.plist</string>
+            <key>plist_version_key</key>
+            <string>CFBundleShortVersionString</string>
+         </dict>
+      </dict>
+      <dict>
+         <key>Processor</key>
+         <string>EndOfCheckPhase</string>
+      </dict>
+	</array>
+</dict>
+</plist>

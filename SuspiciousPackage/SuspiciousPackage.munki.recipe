@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of the Suspicious Package Quicklook Generator and imports into Munki repository.</string>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.SuspiciousPackage.munki</string>
+    <key>Input</key>
+    <dict>
+        <key>CATALOG</key>
+        <string>testing</string>
+        <key>DOWNLOAD_URL</key>
+        <string>http://www.mothersruin.com/software/downloads/SuspiciousPackage.pkg</string>
+        <key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+        <string></string>
+        <key>MUNKI_REPO_SUBDIRECTORY</key>
+        <string></string>
+        <key>NAME</key>
+        <string>SuspiciousPackage</string>
+        <key>POSTFLIGHT_SCRIPT</key>
+        <string>#!/bin/bash
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+console_uid="$(stat -f "%u" /dev/console)"
+if [[ -n "$console_uid" &amp;&amp; $console_uid -ne 0 ]]; then
+    console_user="$(id -un $console_uid)"
+    sudo -u $console_user /usr/bin/qlmanage -r
+fi
+exit 0
+</string>
+        <key>pkginfo</key>
+        <dict>
+            <key>name</key>
+            <string>%NAME%</string>
+            <key>catalogs</key>
+            <array>
+                <string>%CATALOG%</string>
+            </array>
+            <key>description</key>
+            <string>Suspicious Package Quick Look Plug-in</string>
+            <key>notes</key>
+            <string>-- Packaged by autopkg
+Source: %DOWNLOAD_URL%
+</string>
+            <key>postinstall_script</key>
+            <string>%POSTFLIGHT_SCRIPT%</string>
+            <key>postuninstall_script</key>
+            <string>%POSTFLIGHT_SCRIPT%</string>
+        	<key>unattended_install</key>
+        	<false/>
+        	<key>unattended_uninstall</key>
+        	<false/>
+		</dict>
+    </dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+    <key>ParentRecipe</key>
+	<string>org.ef.autopkg.SuspiciousPackage.download</string>
+	<key>Process</key>
+	<array>
+		<dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>version</key>
+                    <string>%version%</string>
+                	<key>display_name</key>
+                	<string>%APP_NAME%</string>
+                </dict>
+            </dict>
+		</dict>
+		<dict>
+	        <key>Processor</key>
+	        <string>MunkiImporter</string>
+	        <key>Arguments</key>
+	        <dict>
+	            <key>pkg_path</key>
+	            <string>%pathname%</string>
+	            <key>repo_subdirectory</key>
+	            <string>%MUNKI_REPO_SUBDIRECTORY%</string>
+	            <key>version_comparison_key</key>
+	            <string>CFBundleShortVersionString</string>
+	        </dict>
+		</dict>
+	</array>
+</dict>
+</plist>

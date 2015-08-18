@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.QuickLookCSV.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>CATALOG</key>
+		<string>testing</string>
+		<key>DOWNLOAD_PAGE_URL</key>
+		<string>https://code.google.com/feeds/p/quicklook-csv/downloads/basic</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIRECTORY</key>
+		<string></string>
+		<key>NAME</key>
+		<string>QuickLookCSV</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+			<key>description</key>
+			<string>A QuickLook plugin to quick look CSV files for Mac OS X 10.5+</string>
+			<key>display_name</key>
+			<string>%NAME%</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>notes</key>
+			<string>-- Packaged by autopkg
+Source: %DOWNLOAD_PAGE_URL%
+</string>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.jps3.munki.QuickLookCSV</string>
+</dict>
+</plist>
