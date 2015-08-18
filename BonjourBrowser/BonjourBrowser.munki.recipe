@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.munki.BonjourBrowser</string>
+	<key>Input</key>
+	<dict>
+		<key>CATALOG</key>
+		<string>testing</string>
+		<key>DOWNLOAD_URL</key>
+		<string>http://www.tildesoft.com/files/BonjourBrowser.dmg</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string></string>
+		<key>NAME</key>
+		<string>BonjourBrowser</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+			<key>description</key>
+			<string>Bonjour Browser is a utility that displays all the bonjour services on your local network.</string>
+			<key>display_name</key>
+			<string>Bonjour Browser</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>notes</key>
+			<string>-- Packaged by autopkg
+Source: %DOWNLOAD_URL%
+</string>
+			<key>unattended_install</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.jleggat.autopkg-recipes.BonjourBrowser.munki</string>
+</dict>
+</plist>
