@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.fseventer.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIRECTORY</key>
+		<string></string>
+		<key>NAME</key>
+		<string>fseventer</string>
+    </dict>
+	<key>ParentRecipe</key>
+	<string>com.github.jps3.munki.fseventer</string>
+</dict>
+</plist>
