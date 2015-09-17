@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads and imports version 2 of the Munki tools via
+the official releases listing on GitHub.
+
+By default only "final" releases are included. Set INCLUDE_PRERELEASES
+to a non-empty value to include releases on GitHub marked as
+"prereleases."
+
+This recipe cannot be overridden to pull a download from an
+alternate location such as munkibuilds.org - it will only download the
+official releases. For this, use the munkitools2-autobuild.munki
+recipe. Assuming you are overriding this recipe, you can copy your
+existing override for use with the autobuild recipe.
+
+The GitHubReleasesInfoProvider processor used by this recipe also
+respects an input variable: 'sort_by_highest_tag_names', which
+if set, will ignore the post dates of the releases and instead sort
+descending by tag names according to LooseVersion semantics.</string>
+    <key>Identifier</key>
+    <string>org.ef.autopkg.MunkiTools.munki</string>
+    <key>Input</key>
+    <dict>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+		<key>CATALOG</key>
+		<string>testing</string>
+        <key>NAME</key>
+        <string>MunkiTools</string>
+		<key>RELEASE_NOTES_URL</key>
+		<string>https://github.com/munki/munki/releases/</string>
+        <key>MUNKI_CATALOG</key>
+        <string>%CATALOG%</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string></string>
+        <!--  -->
+        <key>MUNKITOOLS_NAME</key>
+        <string>MunkiTools</string>
+        <key>MUNKITOOLS_DEVELOPER</key>
+        <string>munki</string>
+        <key>MUNKITOOLS_DISPLAYNAME</key>
+        <string>MunkiTools</string>
+        <key>MUNKITOOLS_DESCRIPTION</key>
+        <string>Munki Software Management Tools
+&lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
+        <key>MUNKITOOLS_NOTES</key>
+		<string>-- Packaged by autopkg
+Containing core, launchd and app sub-packages
+</string>
+        <!--  -->
+        <key>MUNKITOOLS_ADMIN_NAME</key>
+        <string>MunkiToolsAdmin</string>
+        <key>MUNKITOOLS_ADMIN_DISPLAYNAME</key>
+        <string>MunkiToolsAdmin</string>
+        <key>MUNKITOOLS_ADMIN_DESCRIPTION</key>
+        <string>Munki Software Management Admin Tools
+&lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
+        <key>MUNKITOOLS_ADMIN_NOTES</key>
+		<string>-- Packaged by autopkg
+Contains the admin sub-package
+</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.2.4</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^munkitools-2.*?pkg$</string>
+                <key>github_repo</key>
+                <string>munki/munki</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/repack</string>
+                <key>pkgdirs</key>
+                <dict/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_admin*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/%MUNKITOOLS_ADMIN_NAME%.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PathDeleter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>path_list</key>
+                <array>
+					<string>%found_filename%</string>
+				</array>
+            </dict>
+        </dict>
+        <!--  -->
+        <dict>
+            <key>Processor</key>
+            <string>MunkiToolsAdminRemover</string>
+            <key>Arguments</key>
+            <dict>
+                <key>distribution_file</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/Distribution</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/%MUNKITOOLS_NAME%.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/repack/%MUNKITOOLS_NAME%.pkg</string>
+                <key>pkginfo</key>
+                <dict>
+                    <key>catalogs</key>
+                    <array>
+                        <string>%MUNKI_CATALOG%</string>
+                    </array>
+                    <key>description</key>
+                    <string>%MUNKITOOLS_DESCRIPTION%</string>
+                    <key>developer</key>
+                    <string>%MUNKITOOLS_DEVELOPER%</string>
+                    <key>display_name</key>
+                    <string>%MUNKITOOLS_DISPLAYNAME%</string>
+                    <key>minimum_os_version</key>
+                    <string>10.6.0</string>
+                    <key>name</key>
+                    <string>%MUNKITOOLS_NAME%</string>
+                    <key>version</key>
+                    <string>%core_version%</string>
+                    <key>receipts</key>
+                    <array>
+                        <dict>
+                            <key>packageid</key>
+                            <string>com.googlecode.munki.core</string>
+                            <key>version</key>
+                            <string>%core_version%</string>
+                        </dict>
+                    </array>
+                    <key>unattended_install</key>
+                    <false/>
+                    <key>notes</key>
+                    <string>%MUNKITOOLS_NOTES%</string>
+                </dict>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/repack/%MUNKITOOLS_ADMIN_NAME%.pkg</string>
+                <key>pkginfo</key>
+                <dict>
+                    <key>catalogs</key>
+                    <array>
+                        <string>%MUNKI_CATALOG%</string>
+                    </array>
+                    <key>description</key>
+                    <string>%MUNKITOOLS_ADMIN_DESCRIPTION%</string>
+                    <key>developer</key>
+                    <string>%MUNKITOOLS_DEVELOPER%</string>
+                    <key>display_name</key>
+                    <string>%MUNKITOOLS_ADMIN_DISPLAYNAME%</string>
+                    <key>minimum_os_version</key>
+                    <string>10.6.0</string>
+                    <key>name</key>
+                    <string>%MUNKITOOLS_ADMIN_NAME%</string>
+                    <key>unattended_install</key>
+                    <false/>
+                    <key>notes</key>
+                    <string>%MUNKITOOLS_ADMIN_NOTES%</string>
+                    <key>requires</key>
+                    <array>
+                        <string>%MUNKITOOLS_NAME%</string>
+                    </array>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

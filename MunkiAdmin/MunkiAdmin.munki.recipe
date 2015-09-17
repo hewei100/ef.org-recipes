@@ -3,41 +3,49 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>org.ef.autopkg.AutoPkg.munki</string>
+	<string>org.ef.autopkg.MunkiAdmin.munki</string>
 	<key>Input</key>
 	<dict>
+		<key>APP_DESTINATION</key>
+		<string>/Applications</string>
 		<key>CATALOG</key>
 		<string>testing</string>
+		<key>DOWNLOAD_URL</key>
+		<string>https://github.com</string>
 		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
 		<string></string>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string></string>
 		<key>NAME</key>
-		<string>AutoPkg</string>
-		<key>RELEASE_NOTES_URL</key>
-		<string>https://github.com/autopkg/autopkg/releases/</string>
+		<string>MunkiAdmin</string>
+        <key>RELEASE_NOTES_URL</key>
+        <string>https://github.com/hjuutilainen/munkiadmin/releases/</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
 			<array>
 				<string>%CATALOG%</string>
 			</array>
+			<key>category</key>
+			<string>Munki Tools</string>
 			<key>description</key>
-			<string>Automating packaging and software distribution on OS X
+			<string>MunkiAdmin is a GUI for managing munki repositories. It is written with Objective-C and uses in-memory Core Data store as a backend.
 &lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
 			<key>developer</key>
-			<string>autopkg</string>
+			<string>Hannes Juutilainen</string>
 			<key>display_name</key>
-			<string>%NAME%</string>
+			<string>MunkiAdmin - GUI tools for Munki</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>notes</key>
-			<string>-- Packaged by autopkg</string>
+			<string>-- Packaged by autopkg
+Source: %DOWNLOAD_URL%
+</string>
 			<key>unattended_install</key>
 			<false/>
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.hewei100.AutoPkg.munki</string>
+	<string>com.github.jleggat.MunkiAdmin.munki</string>
 </dict>
 </plist>

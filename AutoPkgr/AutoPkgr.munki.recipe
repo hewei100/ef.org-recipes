@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Identifier</key>
-	<string>org.ef.autopkg.AutoPkg.munki</string>
+	<string>org.ef.autopkg.AutoPkgr.munki</string>
 	<key>Input</key>
 	<dict>
 		<key>CATALOG</key>
@@ -13,9 +13,11 @@
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string></string>
 		<key>NAME</key>
-		<string>AutoPkg</string>
+		<string>AutoPkgr</string>
+		<key>SPARKLE_FEED_URL</key>
+		<string>https://raw.githubusercontent.com/lindegroup/autopkgr/appcast/appcast.xml</string>
 		<key>RELEASE_NOTES_URL</key>
-		<string>https://github.com/autopkg/autopkg/releases/</string>
+		<string>https://github.com/lindegroup/autopkgr/releases/</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
@@ -23,21 +25,23 @@
 				<string>%CATALOG%</string>
 			</array>
 			<key>description</key>
-			<string>Automating packaging and software distribution on OS X
+			<string>AutoPkgr makes it simple to get started using autopkg to automate Mac software packaging.
 &lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
 			<key>developer</key>
-			<string>autopkg</string>
+			<string>Linde Group, Inc.</string>
 			<key>display_name</key>
-			<string>%NAME%</string>
+			<string>AutoPkgr</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>notes</key>
-			<string>-- Packaged by autopkg</string>
+			<string>-- Packaged by autopkg
+Source: %SPARKLE_FEED_URL%
+</string>
 			<key>unattended_install</key>
 			<false/>
 		</dict>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.hewei100.AutoPkg.munki</string>
+	<string>com.github.homebysix.munki.AutoPkgr</string>
 </dict>
 </plist>
