@@ -24,6 +24,8 @@
 			<array>
 				<string>%CATALOG%</string>
 			</array>
+            <key>category</key>
+            <string>Munki Tools</string>
 			<key>description</key>
 			<string>AutoPkgr makes it simple to get started using autopkg to automate Mac software packaging.
 &lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>

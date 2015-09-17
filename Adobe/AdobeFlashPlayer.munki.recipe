@@ -23,6 +23,8 @@ Archived versions: http://helpx.adobe.com/flash-player/kb/archived-flash-player-
         <string>http://helpx.adobe.com/flash-player/flash-player-releasenotes.html</string>
         <key>pkginfo</key>
         <dict>
+			<key>category</key>
+			<string>Browser Plugin</string>
             <key>description</key>
             <string>Adobe® Flash® Player is a cross-platform browser-based application runtime that delivers uncompromised viewing of expressive applications, content, and videos across screens and browsers.
 &lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
