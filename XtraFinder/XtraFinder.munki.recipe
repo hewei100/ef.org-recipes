@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Identifier</key>
+	<string>org.ef.autopkg.XtraFinder.munki</string>
+	<key>Input</key>
+	<dict>
+		<key>CATALOG</key>
+		<string>testing</string>
+		<key>MUNKI_PKGINFO_FILE_EXTENSION</key>
+		<string></string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string></string>
+		<key>NAME</key>
+		<string>XtraFinder</string>
+		<key>SPARKLE_FEED_URL</key>
+		<string>http://www.trankynam.com/xtrafinder/XtraFinder-Appcast.xml</string>
+		<key>RELEASE_NOTES_URL</key>
+		<string>https://www.trankynam.com/xtrafinder/releasenotes.html</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>%CATALOG%</string>
+			</array>
+			<key>category</key>
+			<string>Utilities</string>
+			<key>description</key>
+			<string>XtraFinder adds tabs and features to the OS X Finder.
+&lt;br /&gt;&lt;a href="%RELEASE_NOTES_URL%"&gt;Release Notes&lt;/a&gt;</string>
+			<key>developer</key>
+			<string>Tran Ky Nam Software</string>
+			<key>display_name</key>
+			<string>XtraFinder</string>
+			<key>installer_choices_xml</key>
+			<array>
+				<dict>
+					<key>attributeSetting</key>
+					<integer>0</integer>
+					<key>choiceAttribute</key>
+					<string>selected</string>
+					<key>choiceIdentifier</key>
+					<string>choice11</string>
+				</dict>
+				<dict>
+					<key>attributeSetting</key>
+					<integer>0</integer>
+					<key>choiceAttribute</key>
+					<string>selected</string>
+					<key>choiceIdentifier</key>
+					<string>choice12</string>
+				</dict>
+			</array>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>notes</key>
+			<string>-- Packaged by autopkg
+Source: %SPARKLE_FEED_URL%
+</string>
+			<key>unattended_install</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.foigus.munki.XtraFinder</string>
+</dict>
+</plist>
