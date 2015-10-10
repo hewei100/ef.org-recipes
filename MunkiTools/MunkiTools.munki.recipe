@@ -41,6 +41,8 @@ descending by tag names according to LooseVersion semantics.</string>
         <!--  -->
         <key>MUNKITOOLS_NAME</key>
         <string>MunkiTools</string>
+        <key>MUNKITOOLS_CATEGORY</key>
+        <string>Munki Tools</string>
         <key>MUNKITOOLS_DEVELOPER</key>
         <string>munki</string>
         <key>MUNKITOOLS_DISPLAYNAME</key>
@@ -179,6 +181,8 @@ Contains the admin sub-package
                     <array>
                         <string>%MUNKI_CATALOG%</string>
                     </array>
+                    <key>category</key>
+                    <string>%MUNKITOOLS_CATEGORY%</string>
                     <key>description</key>
                     <string>%MUNKITOOLS_DESCRIPTION%</string>
                     <key>developer</key>
@@ -222,6 +226,8 @@ Contains the admin sub-package
                     <array>
                         <string>%MUNKI_CATALOG%</string>
                     </array>
+                    <key>category</key>
+                    <string>%MUNKITOOLS_CATEGORY%</string>
                     <key>description</key>
                     <string>%MUNKITOOLS_ADMIN_DESCRIPTION%</string>
                     <key>developer</key>
